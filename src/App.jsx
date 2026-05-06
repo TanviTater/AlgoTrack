@@ -1,6 +1,8 @@
 import { Routes, Route } from "react-router-dom";
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Sorting from "./pages/Sorting";
@@ -9,10 +11,10 @@ import Stack from "./pages/Stack";
 import Tree from "./pages/Tree";
 import Queue from "./pages/Queue";
 import About from "./pages/About";
+
 import SortingVisualizer from "./pages/SortingVisualizer";
 import StackVisualizer from "./pages/StackVisualizer";
 import QueueVisualizer from "./pages/QueueVisualizer";
-
 import DijkstraVisualizer from "./pages/DijkstraVisualizer";
 
 import { getSelectionSortAnimations } from "./algorithms/sorting/selectionSort";
@@ -26,7 +28,9 @@ function App() {
   return (
     <>
       <Navbar />
+
       <Routes>
+        {/* Main Pages */}
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/sorting" element={<Sorting />} />
@@ -34,17 +38,26 @@ function App() {
         <Route path="/stack" element={<Stack />} />
         <Route path="/queue" element={<Queue />} />
         <Route path="/tree" element={<Tree />} />
-        <Route path="/graph/dijkstra" element={<DijkstraVisualizer />} />
         <Route path="/about" element={<About />} />
-        <Route path="/queue/operations" element={<QueueVisualizer />} />
-        <Route path="/stack/operations" element={<StackVisualizer />} />
-        <Route path="/sorting/selection-sort" element={<SortingVisualizer title="Selection Sort" getAnimations={getSelectionSortAnimations} />} />
-        <Route path="/sorting/insertion-sort" element={<SortingVisualizer title="Insertion Sort" getAnimations={getInsertionSortAnimations} />} />
-        <Route path="/sorting/bubble-sort" element={<SortingVisualizer title="Bubble Sort" getAnimations={getBubbleSortAnimations} />} />
-        <Route path="/sorting/merge-sort" element={<SortingVisualizer title="Merge Sort" getAnimations={getMergeSortAnimations} />} />
-        <Route path="/sorting/quick-sort" element={<SortingVisualizer title="Quick Sort" getAnimations={getQuickSortAnimations} />} />
-        <Route path="/sorting/cyclic-sort" element={<SortingVisualizer title="Cyclic Sort" getAnimations={getCyclicSortAnimations} />} />
-                {/* ✅ NEW */}
+
+        {/* Graph */}
+        <Route
+          path="/graph/dijkstra"
+          element={<DijkstraVisualizer />}
+        />
+
+        {/* Stack & Queue */}
+        <Route
+          path="/stack/operations"
+          element={<StackVisualizer />}
+        />
+
+        <Route
+          path="/queue/operations"
+          element={<QueueVisualizer />}
+        />
+
+        {/* Sorting Visualizers */}
         <Route
           path="/sorting/selection-sort"
           element={
@@ -66,8 +79,52 @@ function App() {
             />
           }
         />
-        
+
+        <Route
+          path="/sorting/bubble-sort"
+          element={
+            <SortingVisualizer
+              title="Bubble Sort"
+              getAnimations={getBubbleSortAnimations}
+              type="bubble"
+            />
+          }
+        />
+
+        <Route
+          path="/sorting/merge-sort"
+          element={
+            <SortingVisualizer
+              title="Merge Sort"
+              getAnimations={getMergeSortAnimations}
+              type="merge"
+            />
+          }
+        />
+
+        <Route
+          path="/sorting/quick-sort"
+          element={
+            <SortingVisualizer
+              title="Quick Sort"
+              getAnimations={getQuickSortAnimations}
+              type="quick"
+            />
+          }
+        />
+
+        <Route
+          path="/sorting/cyclic-sort"
+          element={
+            <SortingVisualizer
+              title="Cyclic Sort"
+              getAnimations={getCyclicSortAnimations}
+              type="cyclic"
+            />
+          }
+        />
       </Routes>
+
       <Footer />
     </>
   );
